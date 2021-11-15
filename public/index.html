@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Longmon Café</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/9.1.2/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/9.1.2/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/9.1.2/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/9.1.2/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/9.1.2/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/9.1.2/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/9.1.2/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/9.1.2/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/9.1.2/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/9.1.2/firebase-performance-compat.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
+    </style>
+
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <!-- Bootstrap JS link  -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    
+    <!-- font awesome cdn link  -->
+    <script src="https://kit.fontawesome.com/c263af57e4.js" crossorigin="anonymous"></script>
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <!-- Preloading -->
+    
+    
+    <!-- Preloading -->
+    <!-- Main -->
+    <div class="page">
+    <header class="header">
+
+      <a href="#" class="logo">
+          <img src="images/logo.png" alt="">
+      </a>
+  
+      <nav class="navbar-list">
+          <a href="#home">home</a>
+          <a href="#about">about</a>
+          <a href="#menu">menu</a>
+          <a href="#products">products</a>
+          <a href="#review">review</a>
+          <a href="#contact">contact</a>
+          <a href="#blogs">blogs</a>
+      </nav>
+      <nav class="navbar">
+        <div class="dropdown-wrapper">
+
+            <div class="d-flex justify-content-end align-items-end">
+              <div class="notify-btn mr-3">
+                  <span class="fas fa-bell fa-2x"></span>
+                </div>
+                <div class="drop-btn ">
+                  <span class="fas fa-caret-down fa-3x"></span>
+                </div>
+                
+              </div>
+
+                <!-- Menu -->
+                <div class="notify-wrapper">
+                    <span class="h1 font-weight-normal">Notifications</span>
+                    <hr>
+                </div>
+
+
+                <div class="wrapper">
+                  <ul class="menu-bar mb-0">
+                    <li ><a href="login.html" class="mx-0">
+                      <div class="icon">
+                        <span class="fas fa-home"></span></div>
+                      Log In </a></li>
+                    <li class="setting-item"><a href="#" class="mx-0">
+                      <div class="icon">
+                        <span class="fas fa-cog"></span></div>
+                      Account & Settings <i class="fas fa-angle-right"></i>
+                    </a></li>
+                    <li class="help-item"><a href="#" class="mx-0">
+                      <div class="icon">
+                        <span class="fas fa-question-circle"></span></div>
+                      Help & support <i class="fas fa-angle-right"></i>
+                    </a></li>
+                    <li><a href="#" class="mx-0">
+                      <div class="icon">
+                        <span class="fas fa-user"></span></div>
+                      About us </a></li>
+                    <li><a href="#" class="mx-0">
+                      <div class="icon" >
+                        <span class="fas fa-comment-alt"></span></div>
+                      Feedback </a></li>
+                  </ul>
+          
+                  <!-- Settings & privacy Menu-items -->
+                  <ul class="setting-drop">
+                    <li class="arrow back-setting-btn"><span class="fas fa-arrow-left"></span>Settings & privacy</li>
+                    <li><a href="#">
+                      <div class="icon">
+                        <span class="fas fa-user"></span></div>
+                      Personal info </a></li>
+                      <li><a href="#">
+                        <div class="icon">
+                          <span class="fas fa-lock"></span></div>
+                          Password </a></li>
+                      <li><a href="#">
+                        <div class="icon">
+                          <span class="fas fa-address-book"></span></div>
+                          Activity log </a></li>
+                     <li><a href="#">
+                        <div class="icon">
+                          <span class="fas fa-globe-asia"></span></div>
+                          Languages </a></li>
+                     <li><a href="#">
+                        <div class="icon">
+                          <span class="fas fa-sign-out-alt"></span></div>
+                          Log out </a></li>
+                  </ul>
+          
+                  <!-- Help & support Menu-items -->
+                  <ul class="help-drop">
+                    <li class="arrow back-help-btn"><span class="fas fa-arrow-left"></span>Help & support</li>
+                    <li><a href="#">
+                      <div class="icon">
+                        <span class="fas fa-question-circle"></span></div>
+                      Help centre </a></li>
+                    <li><a href="#">
+                      <div class="icon">
+                        <span class="fas fa-envelope"></span></div>
+                      Support Inbox </a></li>
+                    <li><a href="#">
+                      <div class="icon">
+                        <span class="fas fa-comment-alt"></span></div>
+                      Send feedback </a></li>
+                    <li><a href="#">
+                      <div class="icon">
+                        <span class="fas fa-exclamation-circle"></span></div>
+                      Report problem </a></li>
+                  </ul>
+                </div>
+
+                <!-- Menu -->
+
+                <!-- Notification(s) -->
+
+            
+                <!-- Notification(s) -->
+                
+        </div>
+            
+        
+    </nav>
+
+    <script>
+      const drop_btn = document.querySelector(".drop-btn");
+      const notify_btn = document.querySelector(".notify-btn");
+      const menu_wrapper = document.querySelector(".wrapper");
+      const notify_wrapper = document.querySelector(".notify-wrapper");
+      const menu_bar = document.querySelector(".menu-bar");
+      const setting_drop = document.querySelector(".setting-drop");
+      const help_drop = document.querySelector(".help-drop");
+      const setting_item = document.querySelector(".setting-item");
+      const help_item = document.querySelector(".help-item");
+      const setting_btn = document.querySelector(".back-setting-btn");
+      const help_btn = document.querySelector(".back-help-btn");
+        drop_btn.onclick = (()=>{
+            if (notify_wrapper.classList.contains("show")){
+                notify_wrapper.classList.remove("show");
+                notify_btn.classList.remove("notify-active");
+
+                menu_wrapper.classList.toggle("show");
+                drop_btn.classList.toggle("dropdown-active");
+            } else {
+                menu_wrapper.classList.toggle("show");
+                drop_btn.classList.toggle("dropdown-active");
+            }
+
+            if (notify_btn.classList.contains("show")){
+              menu_wrapper.style.left = "-290px";
+            } else {
+              menu_wrapper.style.left = "-340px"
+            }
+            
+            
+          
+        });
+        notify_btn.onclick = (()=>{
+            if(menu_wrapper.classList.contains("show")){
+                menu_wrapper.classList.remove("show");
+                drop_btn.classList.remove("dropdown-active");
+
+                notify_wrapper.classList.toggle("show");
+                notify_btn.classList.toggle("notify-active");
+            } else {
+                notify_wrapper.classList.toggle("show");
+                notify_btn.classList.toggle("notify-active");
+            }
+            
+            
+          
+        });
+       
+
+        setting_item.onclick = (()=>{
+          menu_bar.style.marginLeft = "-400px";
+          setTimeout(()=>{
+            setting_drop.style.display = "block";
+          }, 100);
+        });
+        help_item.onclick = (()=>{
+          menu_bar.style.marginLeft = "-400px";
+          setTimeout(()=>{
+            help_drop.style.display = "block";
+          }, 100);
+        });
+        setting_btn.onclick = (()=>{
+          menu_bar.style.marginLeft = "0px";
+          setting_drop.style.display = "none";
+        });
+        help_btn.onclick = (()=>{
+          help_drop.style.display = "none";
+          menu_bar.style.marginLeft = "0px";
+        });
+      </script>
+      </nav>
+
+      
+              
+          
+
+
+
+     
+      
+      <!-- <div class="icons">
+          <div class="fas fa-search" id="search-btn"></div>
+        
+          <div class="fas fa-shopping-cart" id="cart-btn"></div>
+          <div class="fas fa-bars" id="menu-btn"></div>
+      </div> -->
+      
+      <div class="search-form">
+          <input type="search" id="search-box" placeholder="search here...">
+          <label for="search-box" class="fas fa-search"></label>
+      </div>
+      
+      <div class="cart-items-container">
+          <div class="cart-item">
+              <span class="fas fa-times"></span>
+              <img src="images/cart-item-1.png" alt="">
+              <div class="content">
+                  <h3>cart item 01</h3>
+                  <div class="price">$15.99/-</div>
+              </div>
+          </div>
+          <div class="cart-item">
+              <span class="fas fa-times"></span>
+              <img src="images/cart-item-2.png" alt="">
+              <div class="content">
+                  <h3>cart item 02</h3>
+                  <div class="price">$15.99/-</div>
+              </div>
+          </div>
+          <div class="cart-item">
+              <span class="fas fa-times"></span>
+              <img src="images/cart-item-3.png" alt="">
+              <div class="content">
+                  <h3>cart item 03</h3>
+                  <div class="price">$15.99/-</div>
+              </div>
+          </div>
+          <div class="cart-item">
+              <span class="fas fa-times"></span>
+              <img src="images/cart-item-4.png" alt="">
+              <div class="content">
+                  <h3>cart item 04</h3>
+                  <div class="price">$15.99/-</div>
+              </div>
+          </div>
+          <a href="#" class="btn">checkout now</a>
+      </div>
+  
+  </header>
+  
+  <!-- header section ends -->
+  
+  <!-- home section starts  -->
+  
+  <section class="home" id="home">
+  
+      <div class="content">
+          <h3>fresh coffee in the morning</h3>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat labore, sint cupiditate distinctio tempora reiciendis.</p>
+          <a href="register.html" class="btn m-0">Sign Up!</a>
+      </div>
+  
+  </section>
+  
+  <!-- home section ends -->
+  
+  <!-- about section starts  -->
+  
+  <section class="about" id="about">
+  
+      <h1 class="heading"> <span>about</span> us </h1>
+  
+      <div class="row-style">
+  
+          <div class="image">
+              <img src="images/about-img.jpeg" alt="">
+          </div>
+  
+          <div class="content">
+              <h3>what makes our coffee special?</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus qui ea ullam, enim tempora ipsum fuga alias quae ratione a officiis id temporibus autem? Quod nemo facilis cupiditate. Ex, vel?</p>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit amet enim quod veritatis, nihil voluptas culpa! Neque consectetur obcaecati sapiente?</p>
+              <a href="#" class="btn  m-0">learn more</a>
+          </div>
+  
+      </div>
+  
+  </section>
+  
+  <!-- about section ends -->
+  
+  <!-- menu section starts  -->
+  
+  <section class="menu" id="menu">
+  
+      <h1 class="heading"> our <span>menu</span> </h1>
+  
+      <div class="box-container">
+  
+          <div class="card">
+              <img src="images/menu-1.png" alt="">
+              <h3>tasty and healty</h3>
+              <div class="price">$15.99 <span>20.99</span></div>
+              <a href="#" class="btn m-0">add to cart</a>
+          </div>
+  
+          <div class="card">
+              <img src="images/menu-2.png" alt="">
+              <h3>tasty and healty</h3>
+              <div class="price">$15.99 <span>20.99</span></div>
+              <a href="#" class="btn m-0">add to cart</a>
+          </div>
+  
+          <div class="card">
+              <img src="images/menu-3.png" alt="">
+              <h3>tasty and healty</h3>
+              <div class="price">$15.99 <span>20.99</span></div>
+              <a href="#" class="btn m-0">add to cart</a>
+          </div>
+  
+          <div class="card">
+              <img src="images/menu-4.png" alt="">
+              <h3>tasty and healty</h3>
+              <div class="price">$15.99 <span>20.99</span></div>
+              <a href="#" class="btn m-0">add to cart</a>
+          </div>
+  
+          <div class="box">
+              <img src="images/menu-5.png" alt="">
+              <h3>tasty and healty</h3>
+              <div class="price">$15.99 <span>20.99</span></div>
+              <a href="#" class="btn m-0">add to cart</a>
+          </div>
+  
+          <div class="card">
+              <div class="card-body">
+                <img src="images/menu-6.png" alt="">
+                <h3>tasty and healty</h3>
+                <div class="price">$15.99 <span>20.99</span></div>
+                <a href="#" class="btn m-0">add to cart</a>
+              </div>
+              
+          </div>
+  
+      </div>
+  
+  </section>
+  
+  <!-- menu section ends -->
+  
+  <section class="products" id="products">
+  
+      <h1 class="heading"> our <span>products</span> </h1>
+  
+      <div class="box-container">
+  
+          <div class="box">
+              <div class="icons">
+                  <a href="#" class="fas fa-shopping-cart"></a>
+                  <a href="#" class="fas fa-heart"></a>
+                  <a href="#" class="fas fa-eye"></a>
+              </div>
+              <div class="image">
+                  <img src="images/product-1.png" alt="">
+              </div>
+              <div class="content">
+                  <h3>fresh coffee</h3>
+                  <div class="stars">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star-half-alt"></i>
+                  </div>
+                  <div class="price">$15.99 <span>$20.99</span></div>
+              </div>
+          </div>
+  
+          <div class="box">
+              <div class="icons">
+                  <a href="#" class="fas fa-shopping-cart"></a>
+                  <a href="#" class="fas fa-heart"></a>
+                  <a href="#" class="fas fa-eye"></a>
+              </div>
+              <div class="image">
+                  <img src="images/product-2.png" alt="">
+              </div>
+              <div class="content">
+                  <h3>fresh coffee</h3>
+                  <div class="stars">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star-half-alt"></i>
+                  </div>
+                  <div class="price">$15.99 <span>$20.99</span></div>
+              </div>
+          </div>
+  
+          <div class="box">
+              <div class="icons">
+                  <a href="#" class="fas fa-shopping-cart"></a>
+                  <a href="#" class="fas fa-heart"></a>
+                  <a href="#" class="fas fa-eye"></a>
+              </div>
+              <div class="image">
+                  <img src="images/product-3.png" alt="">
+              </div>
+              <div class="content">
+                  <h3>fresh coffee</h3>
+                  <div class="stars">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star-half-alt"></i>
+                  </div>
+                  <div class="price">$15.99 <span>$20.99</span></div>
+              </div>
+          </div>
+  
+      </div>
+  
+  </section>
+  
+  <!-- review section starts  -->
+  
+  <section class="review" id="review">
+  
+      <h1 class="heading"> customer's <span>review</span> </h1>
+  
+      <div class="box-container">
+  
+          <div class="box">
+              <img src="images/quote-img.png" alt="" class="quote">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero nemo fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
+              <img src="images/pic-1.png" class="user" alt="">
+              <h3>john deo</h3>
+              <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+              </div>
+          </div>
+  
+          <div class="box">
+              <img src="images/quote-img.png" alt="" class="quote">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero nemo fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
+              <img src="images/pic-2.png" class="user" alt="">
+              <h3>john deo</h3>
+              <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+              </div>
+          </div>
+          
+          <div class="box">
+              <img src="images/quote-img.png" alt="" class="quote">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero nemo fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
+              <img src="images/pic-3.png" class="user" alt="">
+              <h3>john deo</h3>
+              <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+              </div>
+          </div>
+  
+      </div>
+  
+  </section>
+  
+  <!-- review section ends -->
+  
+  <!-- blogs section starts  -->
+  
+  <section class="blogs" id="blogs">
+  
+      <h1 class="heading"> our <span>blogs</span> </h1>
+  
+      <div class="box-container">
+  
+          <div class="box">
+              <div class="image">
+                  <img src="images/blog-1.jpeg" alt="">
+              </div>
+              <div class="content">
+                  <a href="#" class="title">tasty and refreshing coffee</a>
+                  <span>by admin / 21st may, 2021</span>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, dicta.</p>
+                  <a href="#" class="btn m-0">read more</a>
+              </div>
+          </div>
+  
+          <div class="box">
+              <div class="image">
+                  <img src="images/blog-2.jpeg" alt="">
+              </div>
+              <div class="content">
+                  <a href="#" class="title">tasty and refreshing coffee</a>
+                  <span>by admin / 21st may, 2021</span>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, dicta.</p>
+                  <a href="#" class="btn m-0">read more</a>
+              </div>
+          </div>
+  
+          <div class="box">
+              <div class="image">
+                  <img src="images/blog-3.jpeg" alt="">
+              </div>
+              <div class="content">
+                  <a href="#" class="title">tasty and refreshing coffee</a>
+                  <span>by admin / 21st may, 2021</span>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, dicta.</p>
+                  <a href="#" class="btn m-0">read more</a>
+              </div>
+          </div>
+  
+      </div>
+  
+  </section>
+  
+  <!-- blogs section ends -->
+  
+  <!-- footer section starts  -->
+  
+  <section class="footer">
+  
+      <div class="share">
+          <a href="#" class="fab fa-facebook-f"></a>
+          <a href="#" class="fab fa-twitter"></a>
+          <a href="#" class="fab fa-instagram"></a>
+          <a href="#" class="fab fa-linkedin"></a>
+          <a href="#" class="fab fa-pinterest"></a>
+      </div>
+  
+      <div class="links">
+          <a href="#">home</a>
+          <a href="#">about</a>
+          <a href="#">menu</a>
+          <a href="#">products</a>
+          <a href="#">review</a>
+          <a href="#">contact</a>
+          <a href="#">blogs</a>
+      </div>
+  
+      <div class="credit">created by <span>mr. web designer</span> | all rights reserved</div>
+  
+  </section>
+  
+  <!-- footer section ends -->
+</div>
+    
+<div class="loader-wrapper">
+    <div class="spinner"></div> 
+</div>
+<button onclick="topFunction()" id="myBtn" title="Go to top" class="align-items-center justify-content-center">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+    <!-- Main -->
+    
+    <!-- custom js file link  -->
+    <script src="js/script.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadEl = document.querySelector('#load');
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.firestore().doc('/foo/bar').get().then(() => { });
+        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        // firebase.analytics(); // call to activate
+        // firebase.analytics().logEvent('tutorial_completed');
+        // firebase.performance(); // call to activate
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = [
+            'auth', 
+            'database', 
+            'firestore',
+            'functions',
+            'messaging', 
+            'storage', 
+            'analytics', 
+            'remoteConfig',
+            'performance',
+          ].filter(feature => typeof app[feature] === 'function');
+          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+    <script type="text/javascript">
+        
+        jQuery(window).on('load', function(){
+            $(".loader-wrapper").hide();
+        });
+    </script>
+    <script>
+      //Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "flex";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+    </script>
+  </body>
+</html>
