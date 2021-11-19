@@ -1,22 +1,40 @@
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-const auth = getAuth();
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    const uid = user.uid;
-    // ...
-  } else {
-    // User is signed out
-    // ...
-  }
+var firebaseui = require('firebaseui');
+
+
+// const auth = firebase.auth();
+
+ui.start('#firebaseui-auth-container', {
+  signInOptions: [
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID
+  ],
+  // Other config options...
 });
 
+function register() {
+  var email = document.querySelector("#signup-email").value;
+  var password = document.querySelector("#signup-password").value;
+  auth.createUserWithEmailAndPassword(email, password).then(function(user) {
+       var user = firebase.auth().currentUser;
+       console.log(user); // Optional
+    }, function(error) {
+       // Handle Errors here.
+       var errorCode = error.code;
+       var errorMessage = error.message;
+
+       window.alert(errorMessage)
+    });
+}
 
 function login(){
-      const userEmail = document.getElementById("login_email").value;
-      const userPassword = document.getElementById("login_password").value;
+  var email = document.getElementById("login_email").value;
+  var password = document.getElementsById("login_password").value;
 
-      window.alert( userEmail + " " + userPassword);
-  }
+  const promise = auth.signInWithEmailAndPassword(email.value, password.value);
+  promise.catch(e => alert(e.message));
+
+  alert("Signed Up" + email);
+        
+    
+}
