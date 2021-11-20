@@ -36,23 +36,23 @@ const auth = getAuth(app);
 //   // Other config options...
 // });
 
-function register() {
-  var email = document.querySelector("#signup-email").value; //input 
-  var password = document.querySelector("#signup-password").value;
-  auth.createUserWithEmailAndPassword(email, password)
+function signUp_function() {
+  var email = document.querySelector("#signup-email").value; //email input from register.html
+  var password = document.querySelector("#signup-password").value; //password input from register.html
+  auth.createUserWithEmailAndPassword(email, password) 
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
     // ...
   })
-  .catch((error) => {
+  .catch((error) => { //catching fuction(s) error(s)
     const errorCode = error.code;
     const errorMessage = error.message;
     console.error(errorMessage);
   });
 }
 
-function login(){
+function logIn_function(){
   var email = document.getElementById("login_email").value;
   var password = document.getElementsById("login_password").value;
 
