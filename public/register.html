@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Longmon Café</title>
-    <script src="/__/firebase/9.4.1/firebase-app-compat.js"></script>
-    <script src="/__/firebase/9.4.1/firebase-auth-compat.js"></script>
-    <script src="/__/firebase/init.js?useEmulator=true"></script>
 
     <!-- Authentication javascript Link -->
-    <script type="module" src="./js/Auth.js"></script> 
+    <script type="module">
+      import { signUp_function } from "./js/Auth.js"
+
+      document.querySelector('#btnRegister').addEventListener('click', signUp_function) //onclick
+    </script> 
     
 
 
@@ -111,8 +112,7 @@
                             <label for="password-confirm" class="form-label">Password Confirmation</label>
                             <input type="password" class="form-control text-lowercase" id="signup-password-confirm">
                         </div> -->
-                        <button class="btn w-100 mb-4" onclick="signUp_function()">Sign Up</button>
-                        <script src="js/Auth.js"></script>
+                        <button class="btn w-100 mb-4" id="btnRegister">Sign Up</button>
                       </div>
                   </div>
                 </div>
@@ -124,26 +124,12 @@
                 </div>
                 </div>
                 
-                <a href="login.html" class="btn w-100 ">Log In</a>
+                <a href="login.html" class="btn w-100 m-0">Log In</a>
               </div>
             </div>
     <!-- Log In -->
     
 </div>
-
-<!-- <div class="container-fluid w-100">
-    
-    
-    <div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
-        <div class="w-100" style="max-width: 400px; !important">
-            
-        </div>
-        
-        </div>
-        
-    </div> -->
-
-    
 
     <!-- Main -->
     <div class="loader-wrapper">

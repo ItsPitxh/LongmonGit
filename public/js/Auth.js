@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
-import { getAuth , createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-auth.js";
+import { getAuth , createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,27 +22,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const user = auth.currentUser;
 
 
-
-
-// const auth = firebase.auth();
-
-// ui.start('#firebaseui-auth-container', {
-//   signInOptions: [
-//     auth.EmailAuthProvider.PROVIDER_ID,
-//     auth.GoogleAuthProvider.PROVIDER_ID
-//   ],
-//   // Other config options...
-// });
-
-function signUp_function() {
+export function signUp_function() {
   var email = document.querySelector("#signup-email").value; //email input from register.html
   var password = document.querySelector("#signup-password").value; //password input from register.html
-  auth.createUserWithEmailAndPassword(email, password) 
+  createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
+
+    location.href = "login.html";
     // ...
   })
   .catch((error) => { //catching fuction(s) error(s)
@@ -52,11 +43,11 @@ function signUp_function() {
   });
 }
 
-function logIn_function(){
+export function logIn_function(){
   var email = document.getElementById("login_email").value;
   var password = document.getElementsById("login_password").value;
 
-  auth.signInWithEmailAndPassword(email, password)
+  signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
