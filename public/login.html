@@ -13,7 +13,7 @@
     <script type="module">
       import { logIn_function } from "./js/Auth.js"
 
-      document.querySelector('#btnLogin').addEventListener('click', logIn_function) //onclick
+      document.querySelector('#btnLogin').addEventListener('click', logIn_function) //onclickkkkk
     </script> 
     
     
@@ -95,18 +95,19 @@
               
                 <div class="card-body p-4">
                     <span class="display-4 text-left ">Log In</span>
-                    <form action="">
+                    <div>
                         <div class="my-3">
-                            <label for="email" class="form-label h3">Email Address</label>
-                            <input type="email" class="form-control text-lowercase" id="login_email">
+                            <label for="login_email" class="form-label h3">Email Address</label>
+                            <input type="email" class="form-control text-lowercase" id="login-email">
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control text-lowercase" id="login_password">
+                            <label for="login_password" class="form-label">Password</label>
+                            <input type="password" class="form-control text-lowercase" id="login-password">
                         </div>
+                        <div id="error-message" class="text-danger m-0 text-right"></div>
                         <button class="btn w-100 mb-4" id="btnLogin">Log In</button>
                         
-                    </form>
+                      </div>
                   </div>
                 </div>
                 <div class="py-5">
