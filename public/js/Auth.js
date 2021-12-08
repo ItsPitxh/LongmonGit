@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
-import { getAuth , createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
+import { getStorage, ref } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js";
+import { getAuth , createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, updateProfile   } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -20,9 +21,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const storage = getStorage();
+const storageRef = ref(storage, 'images/menu-1.png');
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const user = auth.currentUser;
+export default firebaseConfig.firestore();
 
 
 export function signUp_function() {
@@ -32,20 +36,25 @@ export function signUp_function() {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-
-    location.href = "login.html";
     // ...
   })
   .catch((error) => { //catching fuction(s) error(s)
-    const errorCode = error.code;
     const errorMessage = error.message;
-    console.error(errorMessage);
+    document.getElementById('error-message').innerHTML = errorMessage;
   });
 }
 
+ function uploadPhotos() {
+  var UserImage = document.getElementsId("ProfilePicture").file;
+  uploadBytes(storageRef, UserImage).then((snapshot) => {
+    console.log('Uploaded a blob or file!');
+  });
+}
+
+
 export function logIn_function(){
-  var email = document.getElementById("login_email").value;
-  var password = document.getElementsById("login_password").value;
+  var email = document.querySelector("#login-email").value;
+  var password = document.querySelector("#login-password").value;
 
   signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
@@ -53,9 +62,83 @@ export function logIn_function(){
     const user = userCredential.user;
     // ...
   })
-  .catch((error) => {
+  .catch((error) => { 
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.error(errorMessage);
-  });   
+    document.getElementById('error-message').innerHTML = errorMessage;
+  });
+
+  
 }
+
+export function UpdateProfile_function(){
+  var username = document.getElementById("update-name").value;
+  var lastname = document.getElementById("update-lastname").value;
+  const [username, setUsnername] = useState("username");
+  const [lastname, setlastname] = useState("lastname");
+  const adduser = (Object) => {
+    const ref = firestore.collection("LongmonData");
+    ref
+    .add(Object)
+    .then (() => {
+      console.log("add Successfully");
+    })
+    .catch ((err) => console.log(err));
+  };
+  const submit = (e) => {
+    e.perventDefault();
+    const Object ={
+      username : username,
+      lastname : lastname
+    };
+    setUsnername("");
+    setlastname("");
+    adduser(Object);
+  }
+ /* updateProfile(auth.currentUser, {
+    displayName: register_name + register_lastname, photoURL: "https://example.com/jane-q-user/profile.jpg"
+  }).then(() => {
+    // Profile updated!
+    // ...
+  }).catch((error) => {
+    // An error occurred
+    // ...
+  });*/
+}
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // window.location.replace("https://projectlongmon.web.app/");
+      //window.location.replace("https://projectlongmon.web.app/register.html");
+      document.getElementById("signUpForm").style.display = "none";
+      document.getElementById("upDateUserForm").style.display = "block";
+      document.getElementById("SignUp-Text").style.display = "none";
+      document.getElementById("SettingAcc-Text").style.display = "block";
+      // if (user == null) {
+      //   // The user object has basic properties such as display name, email, etc.
+        
+        
+      //   // const photoURL = user.photoURL;
+      //   // const emailVerified = user.emailVerified;
+        
+        
+        
+      
+      //   // The user's ID, unique to the Firebase project. Do NOT use
+      //   // this value to authenticate with your backend server, if
+      //   // you have one. Use User.getToken() instead.
+      // }
+      // if (user !== null) { 
+      //   const displayName = user.displayName;
+      //   const email = user.email;
+      //   const uid = user.uid;
+      //   console.log(uid, displayName, email);
+      // }
+      
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+
+
