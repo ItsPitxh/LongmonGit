@@ -696,7 +696,7 @@ nav .drop-btn{
     padding:1rem 0;
 }
 
-.footer .share a{
+.footer .share i{
     height: 5rem;
     width: 5rem;
     line-height: 5rem;
@@ -706,9 +706,27 @@ nav .drop-btn{
     margin:.3rem;
     border-radius: 50%;
 }
+a .phone{
+    height: 5rem;
+    width: 10rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    color:#fff;
+    
+    margin:.3rem;
+    
+}
 
-.footer .share a:hover{
+.footer .share a:hover {
+    
+    color : white;
+
+}
+
+.footer .share a:hover i{
     background-color: var(--main-color);
+    color : white;
+
 }
 
 .footer .links{
@@ -843,6 +861,16 @@ nav .drop-btn{
         font-size: 50%;
     }
 
+}
+
+.vl{
+    border-left: 1px solid white;
+    width: 1px;
+    height : 50px; 
+    left: 100px;
+    margin-left: 4px;
+    padding-right : 4px;
+    
 }
 
 

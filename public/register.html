@@ -112,49 +112,20 @@
                         <span class="display-4 text-left ">Setting Up Your Account!!</span>
                         <div class="my-3">
                             <label for="update-name" class="form-label h3">Name</label>
-                            <input type="text" class="form-control text-lowercase" id="update-name">
+                            <input type="text" class="form-control text-lowercase" id="fname" name="fname">
                         </div>
                         <div class="my-3">
                             <label for="update-lastname" class="form-label h3">Last Name</label>
-                            <input type="text" class="form-control text-lowercase" id="update-lastname">
+                            <input type="text" class="form-control text-lowercase" id="sname" name="sname">
                         </div>
                         <div class="my-3">
-                            <label for="ProfilePicture" class="form-label h3">Name</label>
-                            <input type="file" name="ProfilePicture" id="ProfilePicture">
-                            <img id="show-image" src="#"></img>
+                            <label for="ProfilePicture" class="form-label h3">Profile Picture</label>
+                            <input type="file" name="ProfilePicture" class="form-control form-control-lg" id="ProfilePicture">
+                            <!-- <img id="show-image" src="#"></img> -->
                             
-                            <script>
-                                
-                                $(document).on('change', 'ProfilePicture', function(){
-                                  var Uploaded_image = document.getElementById('ProfilePicture').file;
-                                  var image_name = uploaded_image.name;
-                                  var image_extension = image_name.split('.').pop().toLowerCase();
-                                  if(jQuery.inArray(image_extension, ['gif','png','jpg','jpeg']) == -1){
-                                    alert("invalid Image File");
-                                  }
-                                  var image_size = Uploaded_image.size;
-                                  if(image_size > 200000){
-                                    alert("Image file is too big");
-                                  } else {
-                                    document.getElementsById('show-image').src = Uploaded_image;
-                                    
-                                    
-                                  }
-
-                                });
-                            </script>
                         </div>
-                        <div class="my-3">
-                            <label for="name" class="form-label h3">Name</label>
-                            <input type="text" class="form-control text-lowercase" id="update-name">
-                        </div>
-                        <div class="my-3">
-                            <label for="name" class="form-label h3">Name</label>
-                            <input type="text" class="form-control text-lowercase" id="update-name">
-                        </div>
-                        
                         <div id="error-message" class="text-danger m-0 text-right"></div>
-                        <button class="btn w-100 mb-4" id="btnUpdate">Sign Up</button>
+                        <button class="btn w-100 mb-4" id="btnUpdate">Continue</button>
                       </div>
                   </div>
                 </div>

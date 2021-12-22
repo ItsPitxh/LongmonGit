@@ -3,6 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase
 import { getStorage, ref } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js";
 import { getAuth , createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, updateProfile   } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
+import { getDatabase, ref, set  } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,6 +28,7 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const user = auth.currentUser;
 export default firebaseConfig.firestore();
+const database = getDatabase();
 
 
 export function signUp_function() {
@@ -69,6 +71,19 @@ export function logIn_function(){
   });
 
   
+}
+
+function writeUserData(userId, name, email, imageUrl) {
+  var fname = document.querySelector("#fname").value;
+  var sname = document.querySelector("#sname").value;
+  const db = getDatabase();
+  set(ref(db, 'users/' + userId), {
+    username: name,
+    email: email,
+    fname: fname,
+    sname: sname,
+
+  });
 }
 
 export function UpdateProfile_function(){
