@@ -1,9 +1,8 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
-import { getStorage, ref } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js";
-import { getAuth , createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, updateProfile   } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
-import { getDatabase, ref, set  } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getAuth , createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
+import { getDatabase, ref, set  } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,13 +21,13 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const storage = getStorage();
-const storageRef = ref(storage, 'images/menu-1.png');
+
+// const storageRef = ref(storage, 'images/menu-1.png');
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const user = auth.currentUser;
-export default firebaseConfig.firestore();
-const database = getDatabase();
+const db = getDatabase();
+// export default firebaseConfig.firestore();
 
 
 export function signUp_function() {
@@ -73,43 +72,37 @@ export function logIn_function(){
   
 }
 
-function writeUserData(userId, name, email, imageUrl) {
-  var fname = document.querySelector("#fname").value;
-  var sname = document.querySelector("#sname").value;
-  const db = getDatabase();
-  set(ref(db, 'users/' + userId), {
-    username: name,
-    email: email,
-    fname: fname,
-    sname: sname,
-
+export function writeUserData(uid, name, email) {
+  
+  set(ref(db, 'users/' + uid), {
+    username : name,
+    email : email
   });
 }
 
-export function UpdateProfile_function(){
-  var username = document.getElementById("update-name").value;
-  var lastname = document.getElementById("update-lastname").value;
-  const [username, setUsnername] = useState("username");
-  const [lastname, setlastname] = useState("lastname");
-  const adduser = (Object) => {
-    const ref = firestore.collection("LongmonData");
-    ref
-    .add(Object)
-    .then (() => {
-      console.log("add Successfully");
-    })
-    .catch ((err) => console.log(err));
-  };
-  const submit = (e) => {
-    e.perventDefault();
-    const Object ={
-      username : username,
-      lastname : lastname
-    };
-    setUsnername("");
-    setlastname("");
-    adduser(Object);
-  }
+// export function UpdateProfile_function(){
+  
+//   const [username, setUsnername] = useState("username");
+//   const [lastname, setlastname] = useState("lastname");
+//   const adduser = (Object) => {
+//     const ref = firestore.collection("LongmonData");
+//     ref
+//     .add(Object)
+//     .then (() => {
+//       console.log("add Successfully");
+//     })
+//     .catch ((err) => console.log(err));
+//   };
+//   const submit = (e) => {
+//     e.perventDefault();
+//     const Object ={
+//       username : username,
+//       lastname : lastname
+//     };
+//     setUsnername("");
+//     setlastname("");
+//     adduser(Object);
+//   }
  /* updateProfile(auth.currentUser, {
     displayName: register_name + register_lastname, photoURL: "https://example.com/jane-q-user/profile.jpg"
   }).then(() => {
@@ -119,7 +112,7 @@ export function UpdateProfile_function(){
     // An error occurred
     // ...
   });*/
-}
+
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
