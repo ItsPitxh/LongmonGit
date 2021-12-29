@@ -748,14 +748,14 @@ a .phone{
     background:var(--main-color);
 }
 
-.footer .credit{
-    font-size: 2rem;
+.credit{
+    font-size: 1.5rem;
     color:#fff;
     font-weight: lighter;
     padding:1.5rem;
 }
 
-.footer .credit span{
+.credit span{
     color:var(--main-color);
 }
 
